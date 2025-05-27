@@ -1,3 +1,16 @@
+
+
+“Dieses Monorepo ist standardmäßig für die Nutzung mit npm ausgelegt.
+(pnpm/yarn funktionieren meist auch, werden aber nicht explizit unterstützt.)”
+
+
+
+
+
+
+
+
+
 # Turborepo starter
 
 This Turborepo starter is maintained by the Turborepo core team.
