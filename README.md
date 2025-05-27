@@ -1,97 +1,95 @@
+# nuxt\_3-fullstack-dist
 
+> Modern, modular Nuxt 3 fullstack distribution system for building scalable web apps – with a clean base template and optional feature variants.
 
-“Dieses Monorepo ist standardmäßig für die Nutzung mit npm ausgelegt.
-(pnpm/yarn funktionieren meist auch, werden aber nicht explizit unterstützt.)”
+## 🏗️ What is this?
 
+**nuxt\_3-fullstack-dist** is a monorepo providing a maintainable and extensible foundation for fullstack Nuxt 3 projects.
+It features a minimal base app and optional, ready-to-use variants with popular features (e.g. Supabase, shadcn-nuxt, analytics, E2E, and more).
 
+* **Mono-repo structure:** Each variant is an isolated, self-contained Nuxt app under `/apps`.
+* **Clean starting point:** The base-app only includes Nuxt 3, Tailwind CSS, Pinia, ESLint, and Prettier.
+* **No bloat:** All other features (auth, UI kits, analytics, etc.) are opt-in, via branch or template.
 
+---
 
-
-
-
-
-
-# Turborepo starter
-
-This Turborepo starter is maintained by the Turborepo core team.
-
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## 🗂️ Structure
 
 ```
-cd my-turborepo
-pnpm build
+.
+├── apps/
+│   ├── base-app/           # Minimal Nuxt 3 template (core only)
+│   ├── supabase-app/       # Example: with Supabase & auth (WIP)
+│   ├── shadcn-app/         # Example: with shadcn-nuxt (WIP)
+│   └── ...                 # More variants or branches as needed
+├── packages/               # (optional) Shared modules/libraries
+├── turbo.json              # Turborepo configuration
+├── package.json            # Monorepo root dependencies & scripts
+├── CHANGELOG.md
+├── LICENSE
+└── README.md               # <--- You are here
 ```
 
-### Develop
+---
 
-To develop all apps and packages, run the following command:
+## 🚀 Available Templates
 
-```
-cd my-turborepo
-pnpm dev
-```
+| Template     | Description                       | Features                              |
+| ------------ | --------------------------------- | ------------------------------------- |
+| base-app     | Minimal Nuxt 3 + Tailwind + Pinia | Linting, formatting, no extra modules |
+| supabase-app | With Supabase auth & database     | base-app + Supabase + Auth            |
+| shadcn-app   | With shadcn-nuxt UI kit           | base-app + shadcn-nuxt                |
+| ...          | More coming soon!                 |                                       |
 
-### Remote Caching
+> See `/apps/<template>/README.md` for full details on each variant.
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+---
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## 🛠️ Getting Started
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+Clone the repository and install dependencies in the base-app:
 
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
+```bash
+git clone https://github.com/andiblup/nuxt_3-fullstack-dist.git
+cd nuxt_3-fullstack-dist/apps/base-app
+npm install
+npm run dev
 ```
 
-## Useful Links
+You can use any app variant under `/apps/` as your project starting point, or create your own branch for a custom combination of features.
 
-Learn more about the power of Turborepo:
+---
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+## 📚 Documentation
+
+* [Nuxt 3 Documentation](https://nuxt.com/docs/get-started/introduction)
+* [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+* [Pinia Documentation](https://pinia.vuejs.org/)
+* [Supabase Documentation](https://supabase.com/docs)
+* [shadcn-nuxt Documentation](https://ui.shadcn.com/docs/installation/nuxt)
+* [Turborepo Docs](https://turbo.build/repo/docs)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+---
+
+## 📧 Contact
+
+For questions, suggestions, or contributions, please [open an issue or pull request](https://github.com/andiblup/nuxt_3-fullstack-dist/issues) on GitHub, or contact the maintainer directly via GitHub.
+
+---
+
+## 👤 Maintainer
+
+* [andiblub](https://github.com/andiblub)
+
+---
+
+## 📜 Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for a full history of changes.
+
