@@ -8,7 +8,11 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test:unit": "vitest",
+    "test:unit:ui": "vitest --ui",
+    "test:e2e": "cypress open",
+    "test:e2e:ci": "cypress run"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.5",
@@ -24,9 +28,14 @@
     "@eslint/markdown": "^6.4.0",
     "@nuxt/eslint-config": "^1.4.1",
     "@nuxtjs/tailwindcss": "^7.0.0-beta.0",
+    "@vitest/ui": "^3.1.4",
+    "@vue/test-utils": "^2.4.6",
+    "cypress": "^14.4.0",
     "eslint": "^9.27.0",
     "eslint-plugin-vue": "^10.1.0",
     "globals": "^16.2.0",
-    "prettier": "^3.5.3"
+    "jsdom": "^26.1.0",
+    "prettier": "^3.5.3",
+    "vitest": "^3.1.4"
   }
 }
