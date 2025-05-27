@@ -10,8 +10,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Future plans coming soon! ✨😉
 
+## [0.3.3] - 2024-05-27
 
-## [0.3.2]
+### Added
+- **i18n-app**: Added Nuxt i18n integration with lazy-loaded language files and per-page translation structure
+- **Language Switcher**: Implemented dynamic language switcher in NavBar using `useSwitchLocalePath()` and `useLocalePath()` for locale-prefixed routing
+- **Example translations**: Provided sample JSON translations for English and German
+
+### Changed
+- **Auth Middleware**: Improved public page detection to support locale-prefixed routes via `to.name` with prefix matching for all supported locales
+- **README**: Added notes about i18n integration, usage tips, and language switching best practices
+- **NavBar**: Updated to visually indicate active language using dynamic class binding (Tailwind border for active language)
+- **Nuxt Config**: Updated to include i18n module and configuration for lazy loading translations
+
+---
+
+## [0.3.2] - 2024-05-27
 
 ### Added
 - **testing-app**
