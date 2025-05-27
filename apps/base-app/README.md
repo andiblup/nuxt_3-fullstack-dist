@@ -1,75 +1,31 @@
-# Nuxt Minimal Starter
+# nuxt_3-fullstack-dist / base-app
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Minimaler, erweiterbarer Startpunkt für moderne Fullstack-Nuxt-Projekte.
 
-## Setup
+## 🚀 Enthalten
 
-Make sure to install dependencies:
+- Nuxt 3
+- Tailwind CSS (über @nuxtjs/tailwindcss)
+- Pinia (State Management)
+- ESLint (JS, JSON, Markdown, Vue)
+- Prettier (Formatierung, mit TypeScript-Config)
+- Empfehlung: VS Code mit [Volar Extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+
+## 🚫 **Nicht enthalten**
+
+- Authentifizierung (z.B. Supabase)
+- Datenbank/Backend
+- UI-Kits (shadcn-nuxt, daisyUI, HeadlessUI, Skeleton Loader, etc.)
+- Analytics (z.B. SimpleAnalytics)
+- End-to-End-Tests (z.B. Playwright)
+- Internationale Features (i18n, SEO)
+- Weitere Nuxt-Module
+
+> Diese Features kannst du in eigenen Branches/Apps nachrüsten!
+
+## 🛠️ Quickstart
 
 ```bash
-# npm
+cd apps/base-app
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
