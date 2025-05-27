@@ -10,6 +10,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Future plans coming soon! ✨😉
 
+
+## [Unreleased]
+
+### Added
+- **testing-app**
+  - Added Vitest for unit and component testing
+    - Sample test in `tests/unit/example.spec.ts`
+    - `test:unit` and `test:unit:ui` scripts in `package.json`
+  - Added Cypress for end-to-end (E2E) testing
+    - Cypress config supports E2E tests in `tests/e2e/**/*.cy.{js,ts}`
+    - Example E2E test in `tests/e2e/home.cy.js`
+    - `test:e2e` (interactive) and `test:e2e:ci` (headless) scripts in `package.json`
+    - Disabled Cypress `supportFile` for minimal setup
+  - Added documentation on how to run unit and E2E tests in README
+
+### Changed
+- **testing-app**
+  - Switched E2E testing from Playwright to Cypress for better compatibility with Vitest in monorepo/npm workspace environments
+  - Updated instructions and scripts for Cypress-based E2E tests
+
+
+
 ---
 
 ## [0.3.1] - 2024-05-27
@@ -40,7 +62,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [0.3.0] - 2024-05-27
+## [0.3.2] - 2024-05-27
 
 ### Added
 
