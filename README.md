@@ -34,12 +34,18 @@ It features a minimal base app and optional, ready-to-use variants with popular 
 
 ## 🚀 Available Templates
 
-| Template     | Description                       | Features                              |
-| ------------ | --------------------------------- | ------------------------------------- |
-| base-app     | Minimal Nuxt 3 + Tailwind + Pinia | Linting, formatting, no extra modules |
-| supabase-app | With Supabase auth & database     | base-app + Supabase + Auth            |
-| shadcn-app   | With shadcn-nuxt UI kit           | base-app + shadcn-nuxt                |
-| ...          | More coming soon!                 |                                       |
+| Template                | Features Included                                                                                 |
+|-------------------------|--------------------------------------------------------------------------------------------------|
+| base-app                | Nuxt 3, Tailwind CSS, Pinia, ESLint, Prettier, .env/.env.example, alias, Fontsource (local)     |
+| supabase-app            | base-app + Supabase (DB, Auth, Realtime, Prisma)                                                 |
+| shadcn-app              | base-app + shadcn-nuxt (UI Kit)                                                                  |
+| daisy-headless-app      | base-app + daisyUI, HeadlessUI, Skelator                                                         |
+| analytics-app           | base-app + SimpleAnalytics                                                                       |
+| i18n-seo-app            | base-app + i18n + SEO Toolkit, Sitemap, Robots                                                   |
+| charts-app              | base-app + Chart.js/vue-chartjs                                                                  |
+| e2e-app                 | base-app + Playwright (E2E), Vitest (unit)                                                       |
+| enterprise-shadcn-app   | **ALL** core & feature modules + shadcn-nuxt                                                     |
+| enterprise-daisy-app    | **ALL** core & feature modules + daisyUI, HeadlessUI, Skelator                                   |
 
 > See `/apps/<template>/README.md` for full details on each variant.
 
@@ -57,6 +63,19 @@ npm run dev
 ```
 
 You can use any app variant under `/apps/` as your project starting point, or create your own branch for a custom combination of features.
+
+---
+
+## ⚙️ Build/Config & Local Fonts
+* **Environment Variables:**
+Each app uses .env.example for configuration. Copy to .env and adjust values as needed.
+
+* **Aliases:**
+The aliases @ and ~ are available by default in Nuxt 3 for absolute imports.
+Custom aliases can be added in nuxt.config.ts.
+
+* **Fonts:**
+Local fonts are provided via [Fontsource](https://fontsource.org/) to ensure GDPR compliance and no external requests.
 
 ---
 
