@@ -9,15 +9,20 @@ Minimal, extensible starting point for modern fullstack Nuxt 3 projects.
 - Pinia (state management)
 - ESLint (JS, JSON, Markdown, Vue)
 - Prettier (formatting, with TypeScript config)
+* **Supabase** (auth, real-time, database)
+* Example login/logout and session handling
+* Example `.env.example` file for Supabase configuration
+* **Vitest** (unit/component testing)
+* **Cypress** (end-to-end testing)
+* Example test suites for both frameworks
+* Cypress configured for custom test folder (`tests/e2e/`)
 - **Recommended:** VS Code with [Volar Extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
 ## 🚫 **Not included**
 
-- Authentication (e.g., Supabase)
 - Database/Backend
 - UI kits (shadcn-nuxt, daisyUI, HeadlessUI, Skeleton Loader, etc.)
 - Analytics (e.g., SimpleAnalytics)
-- End-to-End testing (e.g., Playwright)
 - Internationalization (i18n), SEO modules
 - Additional Nuxt modules
 
@@ -26,10 +31,43 @@ Minimal, extensible starting point for modern fullstack Nuxt 3 projects.
 ## 🛠️ Quickstart
 
 ```bash
-cd apps/base-app
+cd apps/enterprise-base-app
+cp .env.example .env
 npm install
 npm run dev
 ```
+
+
+## 🔑 Supabase Setup
+
+* Create a project at [supabase.com](https://supabase.com/)
+* Get your project URL and anon/public API key from your Supabase dashboard
+* Add these to your `.env` file as described in `.env.example`
+
+### 🧑‍💻 Example Features
+
+* Email-based authentication with OTP magic link
+* OAuth (Google login)
+* Protected routes (middleware, layouts)
+* Session-aware navigation bar
+
+
+### 🧪 Testing
+
+* **Unit/Component tests (Vitest):**
+
+  ```bash
+  npm run test:unit     # runs Vitest in the terminal
+  # or interactive UI:
+  npm run test:unit:ui  # opens Vitest UI in browser
+  ```
+* **End-to-End tests (Cypress):**
+
+  ```bash
+  npm run test:e2e        # opens Cypress UI
+  npm run test:e2e:ci     # runs Cypress headless (CI)
+  ```
+
 
 ## 📦 Build
 ```bash
@@ -43,6 +81,9 @@ For more information on Nuxt 3, Tailwind CSS, and other included technologies, r
 - [Pinia Documentation](https://pinia.vuejs.org/)
 - [ESLint Documentation](https://eslint.org/docs/latest/)
 - [Prettier Documentation](https://prettier.io/docs/en/index.html)
+- [Supabase Docs](https://supabase.com/docs)
+* [Vitest Docs](https://vitest.dev/)
+* [Cypress Docs](https://docs.cypress.io/)
 
 ## 📄 License
 This project is licensed under the MIT License. See the [LICENSE](../../LICENSE) file for details.
