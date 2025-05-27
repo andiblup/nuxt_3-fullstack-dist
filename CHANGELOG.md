@@ -9,6 +9,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Future plans coming soon! ✨😉
 
+---
+
+## [0.3.0] - 2024-05-27
+
+### Added
+- supabase-app
+    - E-Mail/OTP Auth, Google OAuth, Confirm Page, Navbar with user/logout,
+
+### Changed
+- assets
+    - css
+        - `main.css:` 
+        ```css
+        @import "@fontsource/inter/variables.css";
+        ``` 
+        to 
+        ```css
+        @import "@fontsource/inter/index.css";
+        ```
+-`.env.example` added supabase environment variables
+
 
 
 ---
