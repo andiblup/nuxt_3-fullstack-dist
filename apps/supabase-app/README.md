@@ -1,48 +1,65 @@
-# nuxt_3-fullstack-dist / base-app
+# nuxt\_3-fullstack-dist / supabase-app
 
-Minimal, extensible starting point for modern fullstack Nuxt 3 projects.
+Minimal, extensible Nuxt 3 starter including authentication and database support via Supabase.
 
 ## 🚀 Included
 
-- Nuxt 3
-- Tailwind CSS (via @nuxtjs/tailwindcss)
-- Pinia (state management)
-- ESLint (JS, JSON, Markdown, Vue)
-- Prettier (formatting, with TypeScript config)
-- **Recommended:** VS Code with [Volar Extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+* Nuxt 3
+* Tailwind CSS (via @nuxtjs/tailwindcss)
+* Pinia (state management)
+* ESLint (JS, JSON, Markdown, Vue)
+* Prettier (formatting, with TypeScript config)
+* **Supabase** (auth, real-time, database)
+* Example login/logout and session handling
+* Example `.env.example` file for Supabase configuration
+* **Recommended:** VS Code with [Volar Extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
 ## 🚫 **Not included**
 
-- Authentication (e.g., Supabase)
-- Database/Backend
-- UI kits (shadcn-nuxt, daisyUI, HeadlessUI, Skeleton Loader, etc.)
-- Analytics (e.g., SimpleAnalytics)
-- End-to-End testing (e.g., Playwright)
-- Internationalization (i18n), SEO modules
-- Additional Nuxt modules
+* UI kits (shadcn-nuxt, daisyUI, HeadlessUI, Skeleton Loader, etc.)
+* Analytics (e.g., SimpleAnalytics)
+* End-to-End testing (e.g., Cypress)
+* Internationalization (i18n), SEO modules
+* Additional Nuxt modules
 
 > You can add these features in separate branches or app templates!
 
 ## 🛠️ Quickstart
 
 ```bash
-cd apps/base-app
+cd apps/supabase-app
+cp .env.example .env  # Edit with your Supabase project keys
 npm install
 npm run dev
 ```
 
+## 🔑 Supabase Setup
+
+* Create a project at [supabase.com](https://supabase.com/)
+* Get your project URL and anon/public API key from your Supabase dashboard
+* Add these to your `.env` file as described in `.env.example`
+
+## 🧑‍💻 Example Features
+
+* Email-based authentication with OTP magic link
+* OAuth (Google login)
+* Protected routes (middleware, layouts)
+* Session-aware navigation bar
+
 ## 📦 Build
+
 ```bash
 npm run build
 ```
 
 ## 📖 Documentation
-For more information on Nuxt 3, Tailwind CSS, and other included technologies, refer to their official documentation:
-- [Nuxt 3 Documentation](https://nuxt.com/docs/get-started/introduction)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Pinia Documentation](https://pinia.vuejs.org/)
-- [ESLint Documentation](https://eslint.org/docs/latest/)
-- [Prettier Documentation](https://prettier.io/docs/en/index.html)
+
+* [Nuxt 3 Docs](https://nuxt.com/docs/get-started/introduction)
+* [Supabase Docs](https://supabase.com/docs)
+* [Tailwind CSS Docs](https://tailwindcss.com/docs)
+* [Pinia Docs](https://pinia.vuejs.org/)
+* [ESLint Docs](https://eslint.org/docs/latest/)
+* [Prettier Docs](https://prettier.io/docs/en/index.html)
 
 ## 📄 License
 This project is licensed under the MIT License. See the [LICENSE](../../LICENSE) file for details.
