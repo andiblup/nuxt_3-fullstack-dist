@@ -1,6 +1,6 @@
-# nuxt_3-fullstack-dist / base-app
+# nuxt_3-fullstack-dist / enterprise-base-app
 
-Minimal, extensible starting point for modern fullstack Nuxt 3 projects.
+Enterprise, extensible starting point for modern fullstack Nuxt 3 projects with extended functionality.
 
 ## 🚀 Included
 
@@ -12,9 +12,10 @@ Minimal, extensible starting point for modern fullstack Nuxt 3 projects.
 * **Supabase** (auth, real-time, database)
 * Example login/logout and session handling
 * Example `.env.example` file for Supabase configuration
-* **Vitest** (unit/component testing)
-* **Cypress** (end-to-end testing)
-* Example test suites for both frameworks
+* Vitest (unit/component testing)
+* Cypress (end-to-end testing)
+* Nuxt i18n (with per-page lazy-loaded translations)
+* Language switcher in NavBar with active style
 * Cypress configured for custom test folder (`tests/e2e/`)
 - **Recommended:** VS Code with [Volar Extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
@@ -23,7 +24,7 @@ Minimal, extensible starting point for modern fullstack Nuxt 3 projects.
 - Database/Backend
 - UI kits (shadcn-nuxt, daisyUI, HeadlessUI, Skeleton Loader, etc.)
 - Analytics (e.g., SimpleAnalytics)
-- Internationalization (i18n), SEO modules
+- SEO modules
 - Additional Nuxt modules
 
 > You can add these features in separate branches or app templates!

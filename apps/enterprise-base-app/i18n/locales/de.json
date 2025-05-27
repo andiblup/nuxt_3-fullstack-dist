@@ -1,0 +1,12 @@
+{
+    "welcome": "Willkommen zur Fullstack Distribution 🚀",
+    "counter": "Zähler",
+    "increment": "Erhöhen",
+    "login": {
+        "title": "Anmelden",
+        "emailAddress": "E-Mail Adresse",
+        "signInWithMail": "Registrieren mit E-Mail",
+        "loginWithGoogle": "loginWithGoogle",
+        "or": "oder"
+    }
+}

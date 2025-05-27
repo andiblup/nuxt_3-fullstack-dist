@@ -1,0 +1,12 @@
+{
+    "welcome": "Welcome to your Fullstack Distro 🚀",
+    "counter": "Counter",
+    "increment": "Increment",
+    "login": {
+        "title": "Login",
+        "emailAddress": "Email Address",
+        "signInWithMail": "Sign in with Email",
+        "loginWithGoogle": "Login with Google",
+        "or": "or"
+    }
+}
