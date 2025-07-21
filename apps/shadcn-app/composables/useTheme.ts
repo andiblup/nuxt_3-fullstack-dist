@@ -1,103 +1,62 @@
-// // composables/useTheme.ts
-// import { ref, watch, onMounted } from 'vue';
-
-// type Theme = 'neutral' | 'violet-light' | 'violet-dark';
-
-// export function useTheme() {
-//     // Initialisiere das Theme basierend auf localStorage oder Standardwert
-//     const currentTheme = ref<Theme>(
-//         (process.client && (localStorage.getItem('theme') as Theme)) || 'neutral'
-//     );
-
-//     // Beobachte Änderungen des Themes und wende die Klasse auf <html> an
-//     watch(currentTheme, (newTheme) => {
-//         if (process.client) {
-//             document.documentElement.setAttribute('data-theme', newTheme);
-//             // Entferne die 'dark' Klasse, wenn du dich auf data-theme verlässt
-//             document.documentElement.classList.remove('dark');
-//             // Füge 'dark' Klasse hinzu, wenn das Theme 'violet-dark' ist
-//             if (newTheme === 'violet-dark') {
-//                 document.documentElement.classList.add('dark');
-//             }
-//             localStorage.setItem('theme', newTheme);
-//         }
-//     }, { immediate: true }); // Führe watch sofort beim Laden aus
-
-//     // Setze das Theme beim Laden der Seite basierend auf dem gespeicherten Wert
-//     onMounted(() => {
-//         if (process.client) {
-//             const storedTheme = localStorage.getItem('theme') as Theme;
-//             if (storedTheme) {
-//                 currentTheme.value = storedTheme;
-//             } else {
-//                 // Setze Standard-Theme, falls noch keines gespeichert
-//                 document.documentElement.setAttribute('data-theme', 'neutral');
-//                 localStorage.setItem('theme', 'neutral');
-//             }
-//         }
-//     });
-
-//     const availableThemes: Theme[] = ['neutral', 'violet-light', 'violet-dark'];
-
-//     return {
-//         currentTheme,
-//         availableThemes,
-//     };
-// }
-
 // composables/useTheme.ts
-import { ref, watch, onMounted } from 'vue';
-
-// NEU: 'neutral-dark' zum Theme-Typ hinzugefügt
-type Theme = 'neutral' | 'neutral-dark' | 'violet-light' | 'violet-dark';
+import { watch, onMounted, computed } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useThemeStore } from '~/stores/theme' // Importiere deinen Pinia Store
 
 export function useTheme() {
-  // Initialisiere das Theme basierend auf localStorage oder Standardwert
-  const currentTheme = ref<Theme>(
-    (process.client && (localStorage.getItem('theme') as Theme)) || 'neutral'
-  );
+  const store = useThemeStore()
+  const { storedTheme, effectiveTheme, prefersDark } = storeToRefs(store) // prefersDark auch vom Store holen
 
-  // Funktion zum Anwenden des Themes und der 'dark'-Klasse
-  const applyTheme = (theme: Theme) => {
-    if (process.client) {
-      document.documentElement.setAttribute('data-theme', theme);
+  /* DOM-Side-Effect */
+  const apply = (theme: string) => {
+    if (!process.client) return
+    const root = document.documentElement
+    root.setAttribute('data-theme', theme)
+    // Die 'dark' Klasse basierend auf dem Theme-Namen setzen
+    root.classList.toggle('dark', theme.endsWith('-dark'))
+  }
 
-      // Zuerst immer die 'dark' Klasse entfernen, um Konflikte zu vermeiden
-      document.documentElement.classList.remove('dark');
-
-      // Füge die 'dark' Klasse hinzu, wenn das Theme ein Dark-Theme ist
-      // Hier liegt der Schlüssel: Füge 'dark' hinzu, wenn es neutral-dark ODER violet-dark ist
-      if (theme === 'neutral-dark' || theme === 'violet-dark') {
-        document.documentElement.classList.add('dark');
-      }
-      localStorage.setItem('theme', theme);
-    }
-  };
-
-  // Beobachte Änderungen des Themes und wende die Klasse auf <html> an
-  watch(currentTheme, (newTheme) => {
-    applyTheme(newTheme);
-  }, { immediate: true }); // Führe watch sofort beim Laden aus
-
-  // Setze das Theme beim Laden der Seite basierend auf dem gespeicherten Wert
+  // Initialisierung beim ersten Mount auf dem Client
   onMounted(() => {
     if (process.client) {
-      const storedTheme = localStorage.getItem('theme') as Theme;
-      if (storedTheme) {
-        // Wenn ein gespeichertes Theme existiert, wende es an
-        currentTheme.value = storedTheme; // Dies löst den Watcher aus
+      // Überprüfe direkt localStorage, bevor Pinia/VueUse es liest
+      const storedValue = localStorage.getItem('theme')
+      if (storedValue && store.themeList.includes(storedValue as any)) {
+        // Wenn ein gültiger Wert im localStorage ist, setze ihn im Store
+        // Dies sollte useStorage dazu bringen, diesen Wert zu verwenden
+        store.setTheme(storedValue as Theme) // Nutze die Store-Action
+        apply(storedValue) // Wende es sofort an
       } else {
-        // Setze Standard-Theme, falls noch keines gespeichert
-        applyTheme('neutral'); // Standardmäßig 'neutral' anwenden
+        // Wenn kein gültiger Wert oder nicht vorhanden, nutze Systempräferenz
+        // und stelle sicher, dass storedTheme im Store undefined ist
+        store.resetToSystem() // Setzt storedTheme.value = undefined
+        apply(effectiveTheme.value) // Wende die Systempräferenz an
       }
     }
-  });
+  })
 
-  // NEU: 'neutral-dark' zur Liste der verfügbaren Themes hinzugefügt
-  const availableThemes: Theme[] = ['neutral', 'neutral-dark', 'violet-light', 'violet-dark'];
+  // Beobachte Änderungen des effektiven Themes und wende sie an
+  watch(effectiveTheme, apply)
+
+  /* v-model-Proxy für UI */
+  const themeModel = computed<string>({
+    get: () => storedTheme.value ?? 'system',
+    set: (val) => {
+      if (val === 'system') {
+        store.resetToSystem()
+      } else {
+        store.setTheme(val as Theme)
+      }
+    },
+  })
 
   return {
-    currentTheme,
-    availableThemes,
-  };
+    themeModel, // 'system' | Theme
+    availableThemes: store.themeList,
+    effectiveTheme,
+    setTheme: store.setTheme,
+    resetToSystem: store.resetToSystem,
+    toggleTheme: store.toggleTheme,
+  }
 }
+
