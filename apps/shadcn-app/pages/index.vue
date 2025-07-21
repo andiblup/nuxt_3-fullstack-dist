@@ -1,0 +1,24 @@
+<template>
+  <!-- <div class="p-8 bg-gray-100 rounded-xl shadow text-xl">
+    <h1 class="font-bold text-3xl mb-4">Welcome to your Fullstack Distro 🚀</h1>
+    <p>Count: {{ counter.count }}</p>
+    <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded" @click="counter.increment">
+      Increment
+    </button>
+
+      
+  </div> -->
+
+  <ThemeSwitcher />
+
+
+  <Button class="cursor-pointer" @click="counter.increment">Button</Button>
+
+</template>
+
+<script setup lang="ts">
+import { Button } from '@/components/ui/button'
+
+
+const counter = useCounter()
+</script>
