@@ -3,179 +3,343 @@
     <div class="container-wrapper 3xl:fixed:px-0 px-6 py-1">
       <div class="3xl:fixed:container flex h-[var(--header-height)] items-center gap-2 *:data-[slot=separator]:!h-4">
 
-        <!-- Burger Menü Trigger (sichtbar auf kleinen Bildschirmen, versteckt auf großen) -->
-        <Sheet>
-          <SheetTrigger as-child>
-            <button
-              class="whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground px-4 py-2 has-[&>svg]:px-3 extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent flex"
-              type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-«Rmplb»"
-              data-state="closed">
-              <div class="relative flex h-8 w-4 items-center justify-center">
-                <div class="relative size-4">
-                  <span class="bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 top-1"></span>
-                  <span
-                    class="bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 top-2.5"></span>
-                </div>
-                <span class="sr-only">Toggle Menu</span>
-              </div>
-              <span class="flex h-8 items-center text-lg leading-none font-medium">Menu</span>
-            </button>
-          </SheetTrigger>
+        <Dialog>
+          <!-- <DialogTrigger as-child>
+            <Button variant="outline">
+              Edit Profile
+            </Button>
+          </DialogTrigger> -->
 
-          <!-- Inhalt des Burger Menüs (das Seitenmenü) -->
-          <SheetContent side="left" class="w-[250px] sm:w-[300px] flex flex-col gap-1">
-            <SheetHeader class="p-3">
-              <SheetTitle>
-                <button
-                  class="whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground px-4 py-2 has-[&>svg]:px-3 extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent flex"
-                  type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-«Rmplb»"
-                  data-state="closed">
-                  <div class="relative flex h-8 w-4 items-center justify-center">
-                    <div class="relative size-4">
-                      <span
-                        class="bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 top-1"></span>
-                      <span
-                        class="bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 top-2.5"></span>
-                    </div>
-                    <span class="sr-only">Toggle Menu</span>
+
+          <!-- Burger Menü Trigger (sichtbar auf kleinen Bildschirmen, versteckt auf großen) -->
+          <Sheet>
+            <SheetTrigger as-child>
+              <button
+                class="whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground px-4 py-2 has-[&>svg]:px-3 extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent flex"
+                type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-«Rmplb»"
+                data-state="closed">
+                <div class="relative flex h-8 w-4 items-center justify-center">
+                  <div class="relative size-4">
+                    <span
+                      class="bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 top-1"></span>
+                    <span
+                      class="bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 top-2.5"></span>
                   </div>
-                  <span class="flex h-8 items-center text-lg leading-none font-medium">Menu</span>
-                </button>
-              </SheetTitle>
-              <SheetDescription v-if="showDesc">
-                <div class="flex flex-col gap-2">
-                  <p>This is a description for the menu.</p>
-                  <div class="flex justify-center gap-2">
-                    <Button variant="ghost" @click="toggleDesc">Disable desc</Button>
-                    <Button variant="outline" @click="timeoutDesc">Timeout desc</Button>
-                  </div>
+                  <span class="sr-only">Toggle Menu</span>
                 </div>
-                <!-- und sie geht ganz lange weil ich sachen testen muss und deswegen viel text
+                <span class="flex h-8 items-center text-lg leading-none font-medium">Menu</span>
+              </button>
+            </SheetTrigger>
+
+            <!-- Inhalt des Burger Menüs (das Seitenmenü) -->
+            <SheetContent side="left" class="w-[250px] sm:w-[300px] flex flex-col gap-1">
+              <SheetHeader class="p-3">
+                <SheetTitle>
+                  <button
+                    class="whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground px-4 py-2 has-[&>svg]:px-3 extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent flex"
+                    type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-«Rmplb»"
+                    data-state="closed">
+                    <div class="relative flex h-8 w-4 items-center justify-center">
+                      <div class="relative size-4">
+                        <span
+                          class="bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 top-1"></span>
+                        <span
+                          class="bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 top-2.5"></span>
+                      </div>
+                      <span class="sr-only">Toggle Menu</span>
+                    </div>
+                    <span class="flex h-8 items-center text-lg leading-none font-medium">Menu</span>
+                  </button>
+                </SheetTitle>
+                <SheetDescription v-if="showDesc">
+                  <div class="flex flex-col gap-2">
+                    <p>This is a description for the menu.</p>
+                    <div class="flex justify-center gap-2">
+                      <Button variant="ghost" @click="toggleDesc">Disable desc</Button>
+                      <Button variant="outline" @click="timeoutDesc">Timeout desc</Button>
+                    </div>
+                  </div>
+                  <!-- und sie geht ganz lange weil ich sachen testen muss und deswegen viel text
                 hineinschreiben muss dabei muss ich das spacing beachten und bei mir fliegt eine fliege und sie nervt
                 mich summ summ -->
-              </SheetDescription>
-            </SheetHeader>
+                </SheetDescription>
+              </SheetHeader>
 
-            <div class="flex flex-col gap-8 overflow-auto px-6 pt-3 pb-6 border-t border-border">
-              <div class="flex flex-col gap-4">
-                <div class="text-muted-foreground text-sm font-medium">
-                  Getting started
-                </div>
-                <div class="flex flex-col gap-3">
-                  <div v-for="component in components" :key="component.title">
-                    <a :href="component.href" target="_blank" rel="noopener noreferrer"
-                      class="h-max block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                      <div class="text-sm font-medium leading-none">
-                        {{ component.title }}
-                      </div>
-                      <p class="line-clamp-3 text-sm leading-snug text-muted-foreground">
-                        {{ component.description }}
-                      </p>
-                    </a>
+              <div class="flex flex-col gap-8 overflow-auto px-6 pt-3 pb-6 border-t border-border">
+                <div class="flex flex-col gap-4">
+                  <div class="text-muted-foreground text-sm font-medium">
+                    Getting started
+                  </div>
+                  <div class="flex flex-col gap-3">
+                    <div v-for="component in components" :key="component.title">
+                      <a :href="component.href" target="_blank" rel="noopener noreferrer"
+                        class="h-max block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div class="text-sm font-medium leading-none">
+                          {{ component.title }}
+                        </div>
+                        <p class="line-clamp-3 text-sm leading-snug text-muted-foreground">
+                          {{ component.description }}
+                        </p>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="flex flex-col gap-4 border-t border-border pt-3">
-                <div class="text-muted-foreground text-sm font-medium">
-                  Theme
-                </div>
-                <div class="flex flex-col gap-3">
-                  <ClientOnly>
-                    <ThemeSwitcher width="180px" />
-                    <template #fallback>
-                      <Skeleton class="w-[180px] h-8 rounded-md"></Skeleton>
-                    </template>
-                  </ClientOnly>
-                </div>
-              </div>
-
-              <div class="flex flex-col gap-4 border-t border-border pt-3">
-                <div class="text-muted-foreground text-sm font-medium">
-                  Getting started
-                </div>
-                <div class="flex flex-col gap-3">
-                  <div v-for="component in components" :key="component.title">
-                    <a :href="component.href" target="_blank" rel="noopener noreferrer"
-                      class="h-max block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                      <div class="text-sm font-medium leading-none">
-                        {{ component.title }}
-                      </div>
-                      <p class="line-clamp-3 text-sm leading-snug text-muted-foreground">
-                        {{ component.description }}
-                      </p>
-                    </a>
+                <div class="flex flex-col gap-4 border-t border-border pt-3">
+                  <div class="text-muted-foreground text-sm font-medium">
+                    Theme
+                  </div>
+                  <div class="flex flex-col gap-3">
+                    <ClientOnly>
+                      <ThemeSwitcher width="180px" />
+                      <template #fallback>
+                        <Skeleton class="w-[180px] h-8 rounded-md"></Skeleton>
+                      </template>
+                    </ClientOnly>
                   </div>
                 </div>
-              </div>
 
-              <div class="flex flex-col gap-4 border-t border-border pt-3">
-                <div class="text-muted-foreground text-sm font-medium">
-                  Getting started
-                </div>
-                <div class="flex flex-col gap-3">
-                  <div v-for="component in components" :key="component.title">
-                    <a :href="component.href" target="_blank" rel="noopener noreferrer"
-                      class="h-max block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                      <div class="text-sm font-medium leading-none">
-                        {{ component.title }}
-                      </div>
-                      <p class="line-clamp-3 text-sm leading-snug text-muted-foreground">
-                        {{ component.description }}
-                      </p>
-                    </a>
+                <div class="flex flex-col gap-4 border-t border-border pt-3">
+                  <div class="text-muted-foreground text-sm font-medium">
+                    Getting started
+                  </div>
+                  <div class="flex flex-col gap-3">
+                    <div v-for="component in components" :key="component.title">
+                      <a :href="component.href" target="_blank" rel="noopener noreferrer"
+                        class="h-max block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div class="text-sm font-medium leading-none">
+                          {{ component.title }}
+                        </div>
+                        <p class="line-clamp-3 text-sm leading-snug text-muted-foreground">
+                          {{ component.description }}
+                        </p>
+                      </a>
+                    </div>
                   </div>
                 </div>
+
+                <div class="flex flex-col gap-4 border-t border-border pt-3">
+                  <div class="text-muted-foreground text-sm font-medium">
+                    Getting started
+                  </div>
+                  <div class="flex flex-col gap-3">
+                    <div v-for="component in components" :key="component.title">
+                      <a :href="component.href" target="_blank" rel="noopener noreferrer"
+                        class="h-max block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div class="text-sm font-medium leading-none">
+                          {{ component.title }}
+                        </div>
+                        <p class="line-clamp-3 text-sm leading-snug text-muted-foreground">
+                          {{ component.description }}
+                        </p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+
               </div>
 
+              <SheetFooter>
+
+                <Card class="p-2 gap-2">
+                  <CardHeader class="flex items-center gap-3">
+                    <CardTitle>
+                      <Avatar>
+                        <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                      
+
+                    </CardTitle>
+                    <CardDescription class="flex items-center">
+                      Your Profilename
+                    </CardDescription>
+                  </CardHeader>
+                  <!-- <CardContent>
+                  <p>Here are Informations about your profile</p>
+                </CardContent> -->
+                </Card>
+
+              </SheetFooter>
+            </SheetContent>
+
+          </Sheet>
+
+          <!-- Desktop Navigation -->
+          <div class="ml-auto items-center gap-2 hidden lg:flex md:flex-1 md:justify-end">
+
+            <!-- <Card class="p-2 gap-2">
+            <CardHeader class="flex items-center gap-3">
+              <CardTitle>
+                <Avatar>
+                  <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </CardTitle>
+              <CardDescription class="flex items-center">
+                Your Profilename
+              </CardDescription>
+            </CardHeader>
+          </Card> -->
+            <div class="">
+
+              <HoverCard>
+                <HoverCardTrigger as-child>
+                  <Button variant="ghost" class="w-10 h-10 rounded-full">
+
+
+                    <ClientOnly>
+
+                      <Avatar>
+                        <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />
+                        <AvatarFallback>AN</AvatarFallback>
+                      </Avatar>
+                      <template #fallback>
+                        <Skeleton class="w-10 h-10 rounded-full"></Skeleton>
+                      </template>
+                    </ClientOnly>
+
+                  </Button>
+                </HoverCardTrigger>
+                <HoverCardContent class="w-80">
+                  <div class="flex justify-between items-center space-x-4">
+
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <DialogTrigger as-child class="cursor-pointer">
+                            <Avatar>
+                              <AvatarImage src="https://github.com/unovue.png" alt="@unovue" />
+                              <AvatarFallback>AN</AvatarFallback>
+                            </Avatar>
+                          </DialogTrigger>
+                        </TooltipTrigger>
+
+                        <TooltipContent>
+                          <p>Edit Profile</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <div class="space-y-1">
+                      <h4 class="text-sm font-semibold">
+                        Your Profilename
+                      </h4>
+                      <p class="text-sm">
+                        Crucial information about your profile or maybe session.
+                      </p>
+                      <!-- <div class="flex items-center pt-2">
+                      <span class="text-xs text-muted-foreground">
+                        Additional Information
+                      </span>
+                    </div> -->
+                    </div>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
 
             </div>
 
-          </SheetContent>
-        </Sheet>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <!-- Hier könntest du align="end" erneut versuchen, aber die Breiten sind oft das Problem -->
+                    <ul class="grid w-[300px] gap-3 p-4">
+                      <li v-for="component in components" :key="component.title">
+                        <NavigationMenuLink as-child>
+                          <a :href="component.href" target="_blank" rel="noopener noreferrer"
+                            class="h-max block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div class="text-sm font-medium leading-none">
+                              {{ component.title }}
+                            </div>
+                            <p class="line-clamp-3 text-sm leading-snug text-muted-foreground">
+                              {{ component.description }}
+                            </p>
+                          </a>
+                        </NavigationMenuLink>
+                      </li>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
 
-        <!-- Desktop Navigation -->
-        <div class="ml-auto items-center gap-2 hidden lg:flex md:flex-1 md:justify-end">
+            <div data-orientation="vertical" role="none" data-slot="separator"
+              class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px">
+            </div>
 
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <!-- Hier könntest du align="end" erneut versuchen, aber die Breiten sind oft das Problem -->
-                  <ul class="grid w-[300px] gap-3 p-4">
-                    <li v-for="component in components" :key="component.title">
-                      <NavigationMenuLink as-child>
-                        <a :href="component.href" target="_blank" rel="noopener noreferrer"
-                          class="h-max block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div class="text-sm font-medium leading-none">
-                            {{ component.title }}
-                          </div>
-                          <p class="line-clamp-3 text-sm leading-snug text-muted-foreground">
-                            {{ component.description }}
-                          </p>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-
-          <div data-orientation="vertical" role="none" data-slot="separator"
-            class="bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px">
+            <ClientOnly>
+              <ThemeSwitcher />
+              <template #fallback>
+                <Skeleton class="w-[180px] h-8 rounded-md"></Skeleton>
+              </template>
+            </ClientOnly>
           </div>
 
-          <ClientOnly>
-            <ThemeSwitcher />
-            <template #fallback>
-              <Skeleton class="w-[180px] h-8 rounded-md"></Skeleton>
-            </template>
-          </ClientOnly>
-        </div>
+          <DialogContent class="flex justify-center items-center">
+            <Tabs default-value="account" class="w-[400px]">
+              <TabsList class="grid w-full grid-cols-2">
+                <TabsTrigger value="account">
+                  Account
+                </TabsTrigger>
+                <TabsTrigger value="password">
+                  Password
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="account">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Account</CardTitle>
+                    <CardDescription>
+                      Make changes to your account here. Click save when you're done.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent class="space-y-2">
+                    <div class="space-y-1">
+                      <Label for="name">Name</Label>
+                      <Input id="name" default-value="Pedro Duarte" />
+                    </div>
+                    <div class="space-y-1">
+                      <Label for="username">Username</Label>
+                      <Input id="username" default-value="@peduarte" />
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button>Save changes</Button>
+                  </CardFooter>
+                </Card>
+              </TabsContent>
+              <TabsContent value="password">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Password</CardTitle>
+                    <CardDescription>
+                      Change your password here. After saving, you'll be logged out.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent class="space-y-2">
+                    <div class="space-y-1">
+                      <Label for="current">Current password</Label>
+                      <Input id="current" type="password" />
+                    </div>
+                    <div class="space-y-1">
+                      <Label for="new">New password</Label>
+                      <Input id="new" type="password" />
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button>Save password</Button>
+                  </CardFooter>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
+
   </header>
 
   <!-- Content -->
@@ -187,45 +351,86 @@
       <div class="flex justify-center w-full">
         <!-- <Card class="w-[350px]"> -->
         <!-- Card resizing -->
-        <Card class="min-w-[250px] max-w-[300px] w-full">
-          <!-- <Card class="md:w-1/3 lg:w-1/4 sm:w-1/3 "> -->
-          <CardHeader>
-            <CardTitle>Counter</CardTitle>
-            <CardDescription>Click on increment to raise the counter by one and decrement to lower it by one.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Label>Counter: {{ counter.count }}</Label>
-          </CardContent>
-          <CardFooter class="flex justify-between px-6 pb-6">
-            <!-- <Button class="cursor-pointer" @click="counter.decrement" variant="outline">
-          <CSRIcon icon="mdiMinus" />
-        </Button>
-        <Button class="cursor-pointer" @click="counter.increment">
-          <CSRIcon icon="mdiPlus" />
-        </Button> -->
+        <ContextMenu>
+          <ContextMenuTrigger class="">
 
-            <ClientOnly>
-              <Button class="cursor-pointer" @click="counter.decrement" variant="outline">
-                <!-- <CSRIcon icon="mdiMinus" /> -->
-                <MdiIcon icon="mdiMinus" />
-              </Button>
-              <Button class="cursor-pointer" @click="counter.increment">
-                <!-- <CSRIcon icon="mdiPlus" /> -->
-                <MdiIcon icon="mdiPlus" />
-              </Button>
-              <template #fallback>
-                <!-- Fallback skeleton for both buttons -->
-                <Skeleton class="h-8 w-8 rounded-md" />
-                <Skeleton class="h-8 w-8 rounded-md" />
-              </template>
-            </ClientOnly>
-          </CardFooter>
-        </Card>
+            <Card class="min-w-[250px] max-w-[300px] w-full">
+              <!-- <Card class="md:w-1/3 lg:w-1/4 sm:w-1/3 "> -->
+              <CardHeader>
+                <CardTitle>Counter</CardTitle>
+                <CardDescription>Click on increment to raise the counter by one and decrement to lower it by one.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Label>Counter: {{ counter.count }}</Label>
+              </CardContent>
+              <CardFooter class="flex justify-between px-6 pb-6">
+
+                <ClientOnly>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger as-child>
+                        <Button class="cursor-pointer" @click="counter.decrement" variant="outline">
+                          <!-- <CSRIcon icon="mdiMinus" /> -->
+                          <MdiIcon icon="mdiMinus" />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Click to decrement</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+
+
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger as-child>
+                        <Button class="cursor-pointer" @click="counter.increment">
+                          <!-- <CSRIcon icon="mdiPlus" /> -->
+                          <MdiIcon icon="mdiPlus" />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Click to increment</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+
+                  <template #fallback>
+                    <!-- Fallback skeleton for both buttons -->
+                    <Skeleton class="h-8 w-8 rounded-md" />
+                    <Skeleton class="h-8 w-8 rounded-md" />
+                  </template>
+                </ClientOnly>
+              </CardFooter>
+            </Card>
+
+          </ContextMenuTrigger>
+          <ContextMenuContent class="w-64">
+            <ContextMenuItem inset @click="counter.increment">
+              Increment
+            </ContextMenuItem>
+            <ContextMenuItem inset @click="counter.decrement">
+              Decrement
+            </ContextMenuItem>
+            <ContextMenuItem inset @click="counter.reset">
+              Reset Counter
+            </ContextMenuItem>
+            <ContextMenuItem inset disabled>
+              Close Browser
+              <ContextMenuShortcut>Alt+F4</ContextMenuShortcut>
+            </ContextMenuItem>
+
+          </ContextMenuContent>
+        </ContextMenu>
+
       </div>
       <div class="m-4"></div>
 
 
+      <div class="w-full flex justify-center">
+
+      </div>
 
       <div class="">
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
@@ -245,9 +450,49 @@
         diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
         takimata sanctus est Lorem ipsum dolor sit amet.
       </div>
-      <div class="h-[200px]">
-        ananas
-      </div>
+
+
+
+
+
+
+
+      <Sheet>
+        <SheetTrigger as-child>
+          <Button variant="outline">
+            Open Sheet
+          </Button>
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Edit profile</SheetTitle>
+            <SheetDescription>
+              Make changes to your profile here. Click save when you're done.
+            </SheetDescription>
+          </SheetHeader>
+          <div class="grid gap-4 py-4">
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Label for="name" class="text-right">
+                Name
+              </Label>
+              <Input id="name" value="Pedro Duarte" class="col-span-3" />
+            </div>
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Label for="username" class="text-right">
+                Username
+              </Label>
+              <Input id="username" value="@peduarte" class="col-span-3" />
+            </div>
+          </div>
+          <SheetFooter>
+            <SheetClose as-child>
+              <Button type="submit">
+                Save changes
+              </Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
       <div class="">
         ananas
       </div>
@@ -285,7 +530,43 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
-import CSRIcon from '~/components/CSRIcon.vue'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import {
+  ContextMenu,
+  ContextMenuCheckboxItem,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuTrigger,
+} from '@/components/ui/context-menu'
+import { Input } from '@/components/ui/input'
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/tabs'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 
 const counter = useCounter()
 
@@ -325,4 +606,5 @@ const components: { title: string, href: string, description: string }[] = [
   },
 
 ];
+
 </script>
