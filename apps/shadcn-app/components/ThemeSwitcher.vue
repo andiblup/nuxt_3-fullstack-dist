@@ -177,41 +177,47 @@ const { themeModel, availableThemes } = useTheme()
     </ClientOnly>
 </template> -->
 
-
+<!-- components/ThemeSwitcher -->
 <script setup lang="ts">
 import { useTheme } from '~/composables/useTheme'
 import {
-  Select, SelectContent, SelectGroup, SelectItem,
-  SelectLabel, SelectTrigger, SelectValue,
+    Select, SelectContent, SelectGroup, SelectItem,
+    SelectLabel, SelectTrigger, SelectValue,
 } from '~/components/ui/select'
+
+
+// Props for width customization, default value is '180px'
+
+const props = defineProps<{
+    width?: string | number
+}>()
+const width = props.width || '180px'
 
 const { themeModel, availableThemes } = useTheme()
 </script>
 
 <template>
-  <ClientOnly>
-    <Select v-model="themeModel">
-      <SelectTrigger class="w-[220px]">
-        <SelectValue placeholder="Theme auswählen" />
-      </SelectTrigger>
+    <div class="">
+        <ClientOnly>
+            <Select v-model="themeModel">
+                <SelectTrigger :class="`w-[${width}]`">
+                    <SelectValue placeholder="Theme auswählen" />
+                </SelectTrigger>
 
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Themes</SelectLabel>
+                <SelectContent>
+                    <SelectGroup>
+                        <SelectLabel>Themes</SelectLabel>
 
-          <!-- System = Key fehlt -->
-          <SelectItem value="system">System (Neutral)</SelectItem>
+                        <!-- System = Key fehlt -->
+                        <SelectItem value="system">System (Neutral)</SelectItem>
 
-          <!-- Persistierbare Themes -->
-          <SelectItem
-            v-for="t in availableThemes"
-            :key="t"
-            :value="t"
-          >
-            {{ t }}
-          </SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-  </ClientOnly>
+                        <!-- Persistierbare Themes -->
+                        <SelectItem v-for="t in availableThemes" :key="t" :value="t">
+                            {{ t }}
+                        </SelectItem>
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
+        </ClientOnly>
+    </div>
 </template>

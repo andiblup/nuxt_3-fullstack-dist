@@ -4,12 +4,7 @@ export default defineNuxtConfig({
     '~/assets/css/tailwind.css',
     '~/assets/css/main.css',
   ],
-  modules: [
-    '@nuxtjs/tailwindcss',
-    '@pinia/nuxt',
-    'shadcn-nuxt',
-    '@nuxtjs/color-mode',
-  ],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'shadcn-nuxt', '@nuxtjs/color-mode', 'nuxt-mdi'],
   colorMode: {
     classSuffix: ''
   },
@@ -34,6 +29,11 @@ export default defineNuxtConfig({
   //     colorMode: 'light', // Standard-Farbmodus, kann später dynamisch geändert werden
   //     themes: ['neutral', 'violet-light', 'violet-dark'], // Füge deine neuen Themes hinzu
   //   },
+  // },
+  // mdi: {
+  //   cache: true,
+  //   componentName: 'MdiIcon',
+  //   defaultSize: '1em'
   // },
   shadcn: {
     prefix: '',
