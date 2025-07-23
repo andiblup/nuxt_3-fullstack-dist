@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// import tailwindcss from '@tailwindcss/vite'
+
+
 export default defineNuxtConfig({
   css: [
     '~/assets/css/main.css'
@@ -7,8 +10,22 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@nuxtjs/supabase',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    'shadcn-nuxt',
+    'nuxt-mdi'
   ],
+  shadcn: {
+    prefix: '',
+    componentDir: './components/ui',
+    theme: {
+      default: 'neutral',
+      colorMode: 'light', // Wichtig: Dies steuert, ob Shadcn die 'dark' Klasse hinzufügt.
+      themes: ['neutral', 'neutral-dark', 'violet-light', 'violet-dark'],
+    },
+  },
+  colorMode: {
+    classSuffix: '' // Wichtig: @nuxtjs/color-mode fügt die Klasse 'dark' direkt hinzu.
+  },
   supabase: {
     //? Deactivates the automatic login redirect
     redirect: false

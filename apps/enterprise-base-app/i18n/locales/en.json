@@ -2,6 +2,7 @@
     "welcome": "Welcome to your Fullstack Distro 🚀",
     "counter": "Counter",
     "increment": "Increment",
+    "language": "Language",
     "login": {
         "title": "Login",
         "emailAddress": "Email Address",

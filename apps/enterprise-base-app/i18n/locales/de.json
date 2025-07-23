@@ -2,6 +2,7 @@
     "welcome": "Willkommen zur Fullstack Distribution 🚀",
     "counter": "Zähler",
     "increment": "Erhöhen",
+    "language": "Sprache",
     "login": {
         "title": "Anmelden",
         "emailAddress": "E-Mail Adresse",
