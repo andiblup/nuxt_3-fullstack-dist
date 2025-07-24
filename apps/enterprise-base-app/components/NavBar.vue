@@ -68,7 +68,7 @@ const signOut = async () => {
         </span>
 
 
-        <Dialog>
+        <Dialog v-model:open="openTabsModal">
 
           <!-- Burger Menü Trigger (sichtbar auf kleinen Bildschirmen, versteckt auf großen) -->
           <Sheet>
@@ -208,17 +208,18 @@ const signOut = async () => {
                         <AvatarImage :src="user.user_metadata.picture || 'https://github.com/unovue.png'"
                           alt="@unovue" />
                         <AvatarFallback>{{
-                          (() => {
-                            const fullName = user.user_metadata.full_name;
-                            if (!fullName) return '';
-                            const parts = fullName.split(' ');
-                            let initials = '';
-                            if (parts.length > 1) {
-                              initials += parts[0].charAt(0);
-                            }
-                            initials += parts[parts.length - 1].charAt(0);
-                            return initials.toUpperCase();
-                          })()
+                          // (() => {
+                          // const fullName = user.user_metadata.full_name;
+                          // if (!fullName) return '';
+                          // const parts = fullName.split(' ');
+                          // let initials = '';
+                          // if (parts.length > 1) {
+                          // initials += parts[0].charAt(0);
+                          // }
+                          // initials += parts[parts.length - 1].charAt(0);
+                          // return initials.toUpperCase();
+                          // })()
+                          avatarFallback()
                         }}</AvatarFallback>
                       </Avatar>
 
@@ -351,7 +352,9 @@ const signOut = async () => {
                   <Button variant="ghost" class="w-10 h-10 rounded-full">
                     <Avatar>
                       <AvatarImage :src="user.user_metadata.picture" alt="@unovue" />
-                      <AvatarFallback class="w-[32px] h-[32px] rounded-full"></AvatarFallback>
+                      <AvatarFallback class="w-[32px] h-[32px] rounded-full">
+                        {{ avatarFallback() }}
+                      </AvatarFallback>
                     </Avatar>
                   </Button>
                 </HoverCardTrigger>
@@ -359,33 +362,23 @@ const signOut = async () => {
                   <Skeleton class="w-[32px] h-[32px] rounded-full"></Skeleton>
                 </template>
               </ClientOnly>
-              <HoverCardContent class="w-80">
-                <div class="flex justify-between items-center space-x-4">
+              <HoverCardContent class="">
+                <div class="flex gap-2 items-center space-x-4">
 
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger>
                         <DialogTrigger as-child class="cursor-pointer">
-                          <Avatar>
-                            <AvatarImage :src="user.user_metadata.picture" />
+                          <Button variant="ghost" class="w-10 h-10 rounded-full">
+                            <Avatar>
+                              <AvatarImage :src="user.user_metadata.picture" />
 
-                            <AvatarFallback>{{
-                              (() => {
-                                const fullName = user.user_metadata.full_name;
-                                if (!fullName) return '';
-                                const parts = fullName.split(' ');
-                                let initials = '';
-                                if (parts.length > 0 && parts[0]) {
-                                  initials += parts[0].charAt(0);
-                                }
-                                if (parts.length > 1 && parts[parts.length - 1]) {
-                                  initials += parts[parts.length - 1].charAt(0);
-                                }
-                                return initials.toUpperCase();
-                              })()
-                            }}</AvatarFallback>
+                              <AvatarFallback>{{
+                                avatarFallback()
+                              }}</AvatarFallback>
 
-                          </Avatar>
+                            </Avatar>
+                          </Button>
                         </DialogTrigger>
                       </TooltipTrigger>
 
@@ -398,11 +391,14 @@ const signOut = async () => {
                     <h4 class="text-sm font-semibold">
                       {{ user.email }}
                     </h4>
-                    <p class="text-sm" v-if="user.user_metadata.full_name">
-                      {{ user.user_metadata.full_name }}
-                      <!-- Crucial information about your profile or maybe session. -->
+                    <p class="text-sm" v-if="user.user_metadata.display_name">
+                      {{ user.user_metadata.display_name }}
                     </p>
-                    <p class="text-sm" v-if="!user.user_metadata.full_name">
+                    <Button variant="outline" @click="signOut">
+                      Logout
+                    </Button>
+                    <!-- <p class="text-sm" v-if="!user.user_metadata.full_name"> -->
+                    <p class="text-sm" v-if="!user">
                       <!-- {{ user }} -->
                       Crucial information about your profile or maybe session.
                     </p>
@@ -582,8 +578,9 @@ const signOut = async () => {
                   </CardHeader>
                   <CardContent class="space-y-2">
                     <div class="space-y-1">
-                      <Label for="name">Full Name</Label>
-                      <Input id="name" />
+                      <Label for="displayName">Display Name</Label>
+                      <Input id="displayName" v-model="displayName"
+                        :placeholder="user?.user_metadata?.display_name || 'Enter your display name'" />
                     </div>
                     <div class="space-y-1">
                       <Label for="picture">Profile Picture</Label>
@@ -591,7 +588,15 @@ const signOut = async () => {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button>Save changes</Button>
+                    <!-- <Button @click="updateUser">Save changes</Button> -->
+                    <Button :disabled="pending" class="inline-flex items-center gap-2" @click="updateUser">
+                      <Spinner v-if="pending" class="h-4 w-4" />
+                      <span v-if="!pending">Save</span>
+                    </Button>
+                    <!-- <Button :disabled="pending" class="inline-flex items-center gap-2" @click="save">
+                      <Spinner v-if="pending" class="h-4 w-4" />
+                      <span v-if="!pending">Save Test Spinner</span>
+                    </Button> -->
                   </CardFooter>
                 </Card>
               </TabsContent>
@@ -649,12 +654,25 @@ const signOut = async () => {
 
   </header>
 
+  <!-- <Button :disabled="pending" class="inline-flex items-center gap-2" @click="save">
+    <Spinner v-if="pending" class="h-4 w-4" />
+    <span v-if="!pending">Save</span>
+  </Button> -->
 
 
 </template>
 
 
 <script lang="ts" setup>
+import Spinner from '~/components/Spinner.vue'
+
+const pending = ref(false)
+const doSomethingAsync = async () => {
+  // Simulate an async operation
+  return new Promise((resolve) => setTimeout(resolve, 2000))
+}
+const openTabsModal = ref(false)
+
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 
@@ -677,9 +695,89 @@ const onLocaleChange = (code: any) => {
   }
 }
 
+// console.log(user.value?.user_metadata?.display_name || 'No display name set');
+
 const email = ref('')
 const password = ref('')
 const confirm_password = ref('')
+const displayName = ref(user.value?.user_metadata.display_name || '')
+const picture = ref(null) // For profile picture upload
+
+const updateUser = async () => {
+  pending.value = true
+  try {
+    if (!user.value) {
+      console.error('No user is logged in');
+      return;
+    }
+
+    // Update display name
+    await updateUserDisplayName();
+
+    // Todo: Upload profile picture if provided
+
+
+  } finally {
+    pending.value = false
+    openTabsModal.value = false
+  }
+}
+
+
+// const updateUserDisplayName = async () => {
+
+//   const form: Record<string, string> = {};
+//   if (displayName.value) {
+//     form['display_name'] = displayName.value;
+//   }
+
+//   const { error } = await supabase.auth.updateUser({
+//     data: { display_name: displayName.value }
+//   })
+//   if (error) console.error('Update error:', error)
+//   else {
+//     console.log('User updated successfully:', user.value);
+//     // Optionally, you can refresh the user data
+//     await supabase.auth.refreshSession();
+//   }
+// }
+const updateUserDisplayName = async () => {
+
+  const { data, error } = await supabase.functions.invoke('clever-action', {
+    body: { display_name: displayName.value }
+  });
+
+  if (error) {
+    console.error('Function error:', error);
+    return;
+  } else {
+
+    user.value = (await supabase.auth.getUser()).data.user; // Refresh user data
+  }
+
+}
+const updateUserProfilePicture = async () => {
+  if (!user.value) {
+    console.error('No user is logged in');
+    return;
+  }
+
+  const { error } = await supabase.auth.updateUser({
+    data: {
+      picture_url: picture.value
+    }
+  });
+
+  if (error) {
+    console.error('Error updating user profile picture:', error);
+  } else {
+    console.log('User profile picture updated successfully:', user.value);
+    user.value = (await supabase.auth.getUser()).data.user; // Refresh user data
+  }
+
+}
+
+
 
 const loginWithMail = async () => {
   const { error } = await supabase.auth.signInWithPassword({
@@ -712,6 +810,20 @@ const loginWithGoogle = async () => {
 const signOut = async () => {
   await supabase.auth.signOut()
   navigateTo('/')
+}
+
+const avatarFallback = () => {
+  const fullName = user.value?.user_metadata.full_name || user.value?.user_metadata.display_name || user.value?.email || 'Unknown User';
+  if (!fullName) return '';
+  const parts = fullName.split(' ');
+  let initials = '';
+  if (parts.length > 0 && parts[0]) {
+    initials += parts[0].charAt(0);
+  }
+  if (parts.length > 1 && parts[parts.length - 1]) {
+    initials += parts[parts.length - 1].charAt(0);
+  }
+  return initials.toUpperCase();
 }
 
 const showDesc = ref(true)

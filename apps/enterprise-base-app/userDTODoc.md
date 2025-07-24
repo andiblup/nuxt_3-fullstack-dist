@@ -60,7 +60,7 @@
 }
 ```
 
-## OAuth github
+## Mail login
 ```json
 {
     "id": "3bc5f412-e83f-4dcd-9f2c-1a3f6c48738a",
@@ -101,6 +101,52 @@
     ],
     "created_at": "2025-07-23T19:36:44.776332Z",
     "updated_at": "2025-07-23T19:50:25.55511Z",
+    "is_anonymous": false
+}
+```
+
+## Display Name Update Mail Logged In User
+```json
+{
+    "id": "3bc5f412-e83f-4dcd-9f2c-1a3f6c48738a",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "andiblup@outlook.com",
+    "email_confirmed_at": "2025-07-23T19:36:44.798129Z",
+    "phone": "",
+    "confirmed_at": "2025-07-23T19:36:44.798129Z",
+    "recovery_sent_at": "2025-07-23T19:41:53.691159Z",
+    "last_sign_in_at": "2025-07-24T20:37:53.707210321Z",
+    "app_metadata": {
+        "provider": "email",
+        "providers": [
+            "email"
+        ]
+    },
+    "user_metadata": {
+        "display_name": "andiblup",
+        "email_verified": true
+    },
+    "identities": [
+        {
+            "identity_id": "c7bc22b8-dc8c-4eb3-a1cd-be12eed23c69",
+            "id": "3bc5f412-e83f-4dcd-9f2c-1a3f6c48738a",
+            "user_id": "3bc5f412-e83f-4dcd-9f2c-1a3f6c48738a",
+            "identity_data": {
+                "email": "andiblup@outlook.com",
+                "email_verified": false,
+                "phone_verified": false,
+                "sub": "3bc5f412-e83f-4dcd-9f2c-1a3f6c48738a"
+            },
+            "provider": "email",
+            "last_sign_in_at": "2025-07-23T19:36:44.792032Z",
+            "created_at": "2025-07-23T19:36:44.792094Z",
+            "updated_at": "2025-07-23T19:36:44.792094Z",
+            "email": "andiblup@outlook.com"
+        }
+    ],
+    "created_at": "2025-07-23T19:36:44.776332Z",
+    "updated_at": "2025-07-24T20:37:53.708888Z",
     "is_anonymous": false
 }
 ```

@@ -1,1 +1,9 @@
 @import "@fontsource/inter/index.css";
+
+.spinner :deep(svg) {
+  animation: spin 1s linear infinite;
+  transform-origin: center;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
